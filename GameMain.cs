@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using DxLibDLL;
+using System.Diagnostics;
 
 namespace GameFramework
 {
@@ -103,7 +104,13 @@ namespace GameFramework
 		//--------------------------------------------------------------------------------
 		static public void DebugLog( string szLogMessage )
 		{
+<<<<<<< HEAD
 			if ( ___bDEBUG___ == true && __debug_window__ != null ) __debug_window__.WriteLog( szLogMessage );
+=======
+			if ( ___bDEBUG___ == false ) return;
+			if ( __debug_window__ != null ) __debug_window__.WriteLog( szLogMessage );
+			else Debug.Write( szLogMessage );
+>>>>>>> origin/codex/explain-codebase-structure-to-newcomers-toliwo
 		}
 		//--------------------------------------------------------------------------------
 		/// <summary>他のシーンへ移行する。あらかじめAddScene()で登録していないと失敗する</summary>

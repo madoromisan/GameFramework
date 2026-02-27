@@ -193,7 +193,19 @@ namespace GameFramework
 		//----------------------------------------------------------------------
 		virtual public void Invoke_InnerPostEvent( object sender, InnerPostEventArgs e )
 		{
+<<<<<<< HEAD
 			if ( e == null ) return;
+=======
+			if ( e == null )
+			{
+				GameMain.DebugLog( "InnerPostEventArgs オブジェクトがnullですわ\n" );
+				return;
+			}
+			if ( e.oArgsObject == null )
+			{
+				GameMain.DebugLog( "InnerPostEventArgsのイベント定義がnullですわ\n" );
+			}
+>>>>>>> origin/codex/explain-codebase-structure-to-newcomers-toliwo
 			//	このウィンドウでハンドルするイベントかどうかチェック
 			if ( e.oArgsObject != null && m_Dictionary_Event_Func.ContainsKey( e.oArgsObject ) == true )
 			{
