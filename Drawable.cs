@@ -193,14 +193,23 @@ namespace GameFramework
 		//----------------------------------------------------------------------
 		virtual public void Invoke_InnerPostEvent( object sender, InnerPostEventArgs e )
 		{
+			if ( e == null )
+			{
+				GameMain.DebugLog( "InnerPostEventArgs オブジェクトがnullですわ\n" );
+				return;
+			}
+			if ( e.oArgsObject == null )
+			{
+				GameMain.DebugLog( "InnerPostEventArgsのイベント定義がnullですわ\n" );
+			}
 			//	このウィンドウでハンドルするイベントかどうかチェック
-			if ( m_Dictionary_Event_Func.ContainsKey( e.oArgsObject ) == true )
+			if ( e.oArgsObject != null && m_Dictionary_Event_Func.ContainsKey( e.oArgsObject ) == true )
 			{
 				//	処理関数実行
 				( ( InnerPostEventHandler )m_Dictionary_Event_Func[ e.oArgsObject ] )( sender, e );
 			}
 			//	親（シーン）に渡す
-			InnerPostEvent( sender, e );
+			if ( InnerPostEvent != null ) InnerPostEvent( sender, e );
 		}
 		//----------------------------------------------------------------------
 		/// <summary>派生先のクラスでイベントを起こすためのブリッジ。
@@ -208,7 +217,7 @@ namespace GameFramework
 		//----------------------------------------------------------------------
 		protected void BridgeEvent( )
 		{
-			InnerPostEvent( this, m_InnerPostEventArgs );
+			if ( InnerPostEvent != null && m_InnerPostEventArgs != null ) InnerPostEvent( this, m_InnerPostEventArgs );
 		}
 		//--------------------------------------------------------------------------------
 		/// <summary>基底では子供のInitialize()を呼ぶだけ</summary>
