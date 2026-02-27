@@ -103,7 +103,7 @@ namespace GameFramework
 		//--------------------------------------------------------------------------------
 		static public void DebugLog( string szLogMessage )
 		{
-			if ( ___bDEBUG___ == true ) __debug_window__.WriteLog( szLogMessage );
+			if ( ___bDEBUG___ == true && __debug_window__ != null ) __debug_window__.WriteLog( szLogMessage );
 		}
 		//--------------------------------------------------------------------------------
 		/// <summary>他のシーンへ移行する。あらかじめAddScene()で登録していないと失敗する</summary>
